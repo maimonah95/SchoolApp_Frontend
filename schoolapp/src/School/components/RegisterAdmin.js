@@ -1,16 +1,69 @@
 import React, { Component } from "react";
-
+import { AddNewAdmin } from "../AdminAPI";
+import messages from "../messages";
 export default class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Name: "",
+      Email: "",
+      Password: "",
+      Gender: "",
+      Phone: ""
+    };
+  }
+  Changehandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  SubmitHandeler = e => {
+    e.preventDefault();
+    const { alert, history, setUser } = this.props;
+    console.log("this is state", this.state);
+    //Postuser => from api.js (axios method)
+    const newAdmin = {
+      admin: {
+        Name: this.state.Name,
+        Email: this.state.Email,
+        Password: this.state.Password,
+        Gender: this.state.Gender,
+        Phone: this.state.Phone
+      }
+    };
+    console.log(newAdmin);
+    AddNewAdmin(newAdmin)
+      .then(() => alert(messages.signUpSuccess, "success"))
+    //   .then(() => history.push("/"))
+      .then(response => {
+        console.log("admin  has been added", response.data);
+      })
+      .catch(error => {
+        console.error("its error : ", error.message);
+        this.setState({
+          Name: "",
+          Email: "",
+          Password: "",
+          Gender: "",
+          Phone: ""
+        });
+        alert(messages.signUpFailure, "danger");
+      });
+  };
   render() {
+    const { Name, Email, Password, Gender, Phone } = this.state;
     return (
       <div>
-        <form>
+        <form onSubmit={this.SubmitHandeler}>
           <h3>Sign Up</h3>
 
           <div className="form-group">
             <label>Name</label>
             <input
               type="text"
+              name="Name"
+              value={Name}
+              onChange={this.Changehandler}
               className="form-control"
               placeholder="First name"
             />
@@ -19,6 +72,9 @@ export default class SignUp extends Component {
             <label>Email address</label>
             <input
               type="email"
+              name="Email"
+              value={Email}
+              onChange={this.Changehandler}
               className="form-control"
               placeholder="Enter email"
             />
@@ -28,6 +84,9 @@ export default class SignUp extends Component {
             <label>Password</label>
             <input
               type="password"
+              name="Password"
+              value={Password}
+              onChange={this.Changehandler}
               className="form-control"
               placeholder="Enter password"
             />
@@ -36,20 +95,29 @@ export default class SignUp extends Component {
             <label>Gender</label>
             <input
               type="text"
+              name="Gender"
+              value={Gender}
+              onChange={this.Changehandler}
               className="form-control"
-              placeholder="Last name"
+              placeholder="Gender"
             />
           </div>
           <div className="form-group">
             <label>Phone</label>
             <input
               type="text"
+              name="Phone"
+              value={Phone}
+              onChange={this.Changehandler}
               className="form-control"
-              placeholder="Last name"
+              placeholder="966-555-555"
             />
           </div>
 
-          <button type="submit" className="btn btn-primary btn-block">
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+          >
             Sign Up
           </button>
           <p className="forgot-password text-right">

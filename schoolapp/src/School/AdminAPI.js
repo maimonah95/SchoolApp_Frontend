@@ -5,12 +5,25 @@ import axios from "axios";
 
 //Add new Admin 
 const AddNewAdmin = newAdmin => {
-  return axios.post(`${apiURL}/register`, newAdmin);
+  return axios.post(`${apiUrl}/register`, newAdmin);
+    // return axios({
+    //   method: "POST",
+    //   url: apiUrl + "/register",
+    //   data: {
+    //     newAdmin
+    //   }
+    // });
 };
 
 //LogIn
 
-const Login = checkAdmin => {
-  return axios.post(`${apiURL}/login`, checkAdmin);
+const LoginAPI = checkAdmin => {
+  return axios.post(`${apiUrl}/login`, checkAdmin);
 };
-export { AddNewAdmin ,login};
+
+//Logout
+ const signOut = user => {
+  return axios.delete(`${apiUrl}/logout`, user, {headers:{
+      Authorization: `Bearer ${user.token}`}});
+};
+export { AddNewAdmin, LoginAPI, signOut };

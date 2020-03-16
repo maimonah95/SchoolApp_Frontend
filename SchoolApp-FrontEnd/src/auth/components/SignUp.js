@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { AddNewAdmin } from "../AdminAPI";
+import { withRouter } from "react-router-dom";
+import { AddNewAdmin, signIn } from "../AdminAPI";
 import messages from "../messages";
-export default class SignUp extends Component {
+
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,11 +19,10 @@ export default class SignUp extends Component {
       [e.target.name]: e.target.value
     });
   };
-  SubmitHandeler = e => {
-    e.preventDefault();
+
+  SubmitHandeler = event => {
+    event.preventDefault();
     const { alert, history, setUser } = this.props;
-    console.log("this is state", this.state);
-    //Postuser => from api.js (axios method)
     const newAdmin = {
       admin: {
         Name: this.state.Name,
@@ -33,13 +34,16 @@ export default class SignUp extends Component {
     };
     console.log(newAdmin);
     AddNewAdmin(newAdmin)
+      .then(() => signIn(this.state))
+      // .then(response => {
+      //   console.log("admin  has been added", response.data);
+      // })
+      // // console.log(this.state)
+       .then(res => setUser(res.data))
       .then(() => alert(messages.signUpSuccess, "success"))
-    //   .then(() => history.push("/"))
-      .then(response => {
-        console.log("admin  has been added", response.data);
-      })
+      .then(() => history.push("/"))
       .catch(error => {
-        console.error("its error : ", error.message);
+        console.error(error);
         this.setState({
           Name: "",
           Email: "",
@@ -50,6 +54,7 @@ export default class SignUp extends Component {
         alert(messages.signUpFailure, "danger");
       });
   };
+
   render() {
     const { Name, Email, Password, Gender, Phone } = this.state;
     return (
@@ -65,7 +70,7 @@ export default class SignUp extends Component {
               value={Name}
               onChange={this.Changehandler}
               className="form-control"
-              placeholder="First name"
+              placeholder=" name"
             />
           </div>
           <div className="form-group">
@@ -114,17 +119,16 @@ export default class SignUp extends Component {
             />
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-          >
+          <button type="submit" className="btn btn-primary btn-block">
             Sign Up
           </button>
           <p className="forgot-password text-right">
-            Already registered <a href="#">sign in?</a>
+            Already registered <a href="#/sign-in">sign in?</a>
           </p>
         </form>
       </div>
     );
   }
 }
+
+export default withRouter(SignUp);

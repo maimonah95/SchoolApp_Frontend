@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { LoginAPI } from "../AdminAPI";
+import { withRouter } from "react-router-dom";
+
+import { signIn } from "../AdminAPI";
 import messages from "../messages";
-export default class Login extends Component {
+
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,27 +12,34 @@ export default class Login extends Component {
       Password: ""
     };
   }
-
   Changehandler = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-  SubmitHandeler = (e) => {
-        e.preventDefault();
-        // const { alert, history, setUser } = this.props;
-        console.log("this is state", this.state);
-        LoginAPI(this.state)
-          .then(() => alert(messages.signInSuccess, "success"))
-          .catch(error => {
-            console.error(error);
-            this.setState({ Email: "", Password: "" });
-            alert(messages.signInFailure, "danger");
-          });
 
+  SubmitHandeler = event => {
+    event.preventDefault();
+
+    const { alert, history, setUser } = this.props;
+
+    signIn(this.state)
+      .then(res => setUser(res.data))
+      // .then(response => {
+      //   console.log("admin  has been loged", response.data);
+      // })
+      .then(() => alert(messages.signInSuccess, "success"))
+      .then(() => history.push("/"))
+      .catch(error => {
+        console.error(error);
+        this.setState({ Email: "", Password: "" });
+        alert(messages.signInFailure, "danger");
+      });
   };
+
   render() {
     const { Email, Password } = this.state;
+
     return (
       <div>
         <form onSubmit={this.SubmitHandeler}>
@@ -69,3 +79,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(SignIn);

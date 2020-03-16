@@ -1,5 +1,5 @@
-import apiUrl from '../apiConfig';
-import axios from 'axios';
+import apiUrl from "../apiConfig";
+import axios from "axios";
 
 // INDEX, SHOW, CREATE, UPDATE, DESTROY
 
@@ -9,21 +9,19 @@ const getAllSubjects = () => {
 };
 
 // Delete Subject by ID
-const deleteSubjectByID = (id) => {
+const deleteSubjectByID = id => {
   return axios.delete(`${apiUrl}/subjects/${id}`);
-}
+};
 
+//Add article
+const addNewSubject = subject => {
+  return axios.post(`${apiUrl}/AddNewSub`, subject);
+};
 
-// // Add new Subject 
-// const addNewSubject = subject => {
-//     return axios.post(`${apiUrl}/subjects/`,{subject});
-//   }
 
 //   // Update existing Subject
 // export const updateSubject = (subject, id) => {
 //   return axios.patch(`${apiUrl}/subjects/${id}`, { subject});
 // };
 
-export { getAllSubjects, deleteSubjectByID};
-
-
+export { getAllSubjects, deleteSubjectByID, addNewSubject };

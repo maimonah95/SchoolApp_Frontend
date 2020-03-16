@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 class Subject extends React.Component {
-  deleteSubject = (event) => {
+  deleteSubject = event => {
     event.preventDefault();
     this.props.deleteSubject(this.props.id);
-  }
+  };
 
   render() {
     return (
@@ -12,10 +12,10 @@ class Subject extends React.Component {
         {/* Subject name & subject Code  & student Grade */}
         <h2> Subject Name: {this.props.name}</h2>
         <sub>Subject Code: {this.props.subjectCode}</sub>
-        <p>
-       Grade: {this.props.grade}
-        </p>
-        <a href="#" onClick={this.deleteSubject}>Delete</a>
+        <p>Grade: {this.props.grade}</p>
+        <a href="#" onClick={this.deleteSubject}>
+          Delete
+        </a>
       </div>
     );
   }

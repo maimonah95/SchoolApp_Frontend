@@ -1,42 +1,38 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
+import Subjects from './School/components/subjects';
 import Login from "./School/components/Login";
 import SignUp from "./School/components/RegisterAdmin";
-import Subject from "./School/components/subjects";
 // import { BrowserRouter } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state={
-      Subject:[]
-          };
-          //console.log(this.state.Subject);
-
-        };
-        
-  
-    getAllsubjects = () => {
-      console.log('getAllsubjects');
+    this.state = {
+      subjects: []
     };
-/*   setExam = (exam)=>{
-    this.setState({exam:exam});
-  } */
+  }
+  setSubjects = subjects => {
+    this.setState({ subjects: subjects });
+  };
 
   render() {
     return (
-      <div>
-          <p>
-            <Login/>
-            <SignUp/>
-          </p>
-         <Subject exam={this.state.exam}
-                  setState={this.setExam}/>
+      <div className="App">
+        <header className="App-header">
+        <Login />
+        <SignUp />
+        </header>
+          <p>Welcome to SchoolApp!</p>
+      
+        <Subjects
+          subjects={this.state.subjects}
+          setSubjects={this.setSubjects}
+        />
       </div>
     );
   }
 }
-
 export default App;

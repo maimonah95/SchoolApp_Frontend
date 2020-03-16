@@ -24,6 +24,15 @@ const deleteSubjectByID = (id) => {
 //   return axios.patch(`${apiUrl}/subjects/${id}`, { subject});
 // };
 
-export { getAllSubjects, deleteSubjectByID};
+////////////////////////////////////////////////////////////////////
+  
+  // Create new Exam
+  const addExam = exam => {
+    return axios.post(`${apiUrl}/subjects/:SubjectCode/exams`);
+  };
 
+export { getAllSubjects, deleteSubjectByID , addExam};
 
+  
+
+  

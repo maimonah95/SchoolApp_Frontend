@@ -1,12 +1,18 @@
 import React from "react";
+<<<<<<< HEAD
 
 import AlertDismissible from "./School/components/AlertDismissible";
+=======
+import ReactDOM from "react-dom";
+import Subjects from './School/components/subjects';
+>>>>>>> 65633c2d28daca5bf5578b2210a774941ffd9af4
 import Login from "./School/components/Login";
 import SignUp from "./School/components/RegisterAdmin";
 import signOut from "./School/components/SignOut";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
+<<<<<<< HEAD
   constructor() {
     super();
 
@@ -16,6 +22,18 @@ class App extends React.Component {
     };
   }
   setUser = user => this.setState({ user });
+=======
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      subjects: []
+    };
+  }
+  setSubjects = subjects => {
+    this.setState({ subjects: subjects });
+  };
+>>>>>>> 65633c2d28daca5bf5578b2210a774941ffd9af4
 
   clearUser = () => this.setState({ user: null });
 
@@ -26,6 +44,7 @@ class App extends React.Component {
     const { alerts, user } = this.state;
 
     return (
+<<<<<<< HEAD
       <>
         <SignUp alert={this.alert} setUser={this.setUser} />
         <Login alert={this.alert} setUser={this.setUser} />
@@ -67,6 +86,20 @@ class App extends React.Component {
       //       /> */}
       //   </main>
       // </React.Fragment>
+=======
+      <div className="App">
+        <header className="App-header">
+        <Login />
+        <SignUp />
+        </header>
+          <p>Welcome to SchoolApp!</p>
+      
+        <Subjects
+          subjects={this.state.subjects}
+          setSubjects={this.setSubjects}
+        />
+      </div>
+>>>>>>> 65633c2d28daca5bf5578b2210a774941ffd9af4
     );
   }
 }

@@ -24,9 +24,6 @@ const addNewSubject = subject => {
 //   return axios.patch(`${apiUrl}/subjects/${id}`, { subject});
 // };
 
-<<<<<<< HEAD:SchoolApp-FrontEnd/src/auth/api.js
-export { getAllSubjects, deleteSubjectByID, addNewSubject };
-=======
 ////////////////////////////////////////////////////////////////////
   
   // Create new Exam
@@ -34,9 +31,32 @@ export { getAllSubjects, deleteSubjectByID, addNewSubject };
     return axios.post(`${apiUrl}/subjects/:SubjectCode/exams`);
   };
 
-export { getAllSubjects, deleteSubjectByID , addExam};
+
+
+// Get All Feeds
+const getAllFeeds = () => {
+  return axios.get(`${apiUrl}/feeds`);
+};
+
+// Delete Feed by ID
+const deleteFeedByID = id => {
+  return axios.delete(`${apiUrl}/feeds/${id}`);
+};
+
+//Add new feed
+const addNewfeed = feed => {
+  return axios.post(`${apiUrl}/AddFeed`, feed);
+};
+
+
+export { getAllSubjects, deleteSubjectByID , addExam, addNewSubject,
+  getAllFeeds,deleteFeedByID, addNewfeed };
+
+
+
+
+
 
   
 
   
->>>>>>> ec9cfafbce4632213942e88a4dfc6e5ca5aac188:schoolapp/src/School/api.js

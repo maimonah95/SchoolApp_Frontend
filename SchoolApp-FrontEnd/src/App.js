@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import AlertDismissible from './auth/components/AlertDismissible'
 import Subjects from "./auth/components/subjects"
+import Students from "./auth/components/Students";
 class App extends Component {
   constructor() {
     super();
@@ -84,6 +85,14 @@ class App extends Component {
             )}
           />
 
+          <AuthenticatedRoute
+              user={user}
+              path="/Students"
+              render={() => (
+                 <Students/>
+              )}
+          />
+  <Students/>
           {/* <AuthenticatedRoute
             user={user}
             path="/addSub"

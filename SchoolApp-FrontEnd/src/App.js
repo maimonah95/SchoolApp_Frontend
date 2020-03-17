@@ -7,9 +7,9 @@ import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
-import AddSubjects from "./auth/components/addSubject";
 import AlertDismissible from './auth/components/AlertDismissible'
-import Subjects from "./auth/components/subjects";
+import Subjects from "./auth/components/subjects"
+import Feeds from "./auth/components/feeds"
 class App extends Component {
   constructor() {
     super();
@@ -17,7 +17,8 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      subjects: []
+      subjects: [],
+      feeds:[]
     };
   }
 
@@ -31,6 +32,20 @@ class App extends Component {
 
   setSubjects = subjects => {
     this.setState({ subjects: subjects });
+  };
+
+  AddSubjects = subjects => {
+    this.setState({
+      subjects: [...this.state.subjects, subjects]
+    });
+  };
+  setFeeds = feeds => {
+    this.setState({ feeds: feeds });
+  };
+  AddFeeds = feeds => {
+    this.setState({
+      feeds: [...this.state.feeds, feeds]
+    });
   };
 
   render() {
@@ -70,16 +85,30 @@ class App extends Component {
             user={user}
             path="/Subjects"
             render={() => (
-              <Subjects alert={this.alert} user={user} subjects={subjects} />
+              <Subjects
+                alert={this.alert}
+                user={user}
+                subjects={this.state.subjects}
+                setSubjects={this.setSubjects}
+                AddSubjects={this.AddSubjects}
+              />
             )}
           />
-          <AuthenticatedRoute
+               <AuthenticatedRoute
             user={user}
-            path="/addSub"
+            path="/Feeds"
             render={() => (
-              <AddSubjects alert={this.alert} user={user} subjects={subjects} />
+              <Feeds
+                alert={this.alert}
+                user={user}
+                feeds={this.state.feeds}
+                setFeeds={this.setFeeds}
+                AddFeeds={this.AddFeeds}
+              />
             )}
           />
+
+         
         </main>
       </React.Fragment>
     );

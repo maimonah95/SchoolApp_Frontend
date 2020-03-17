@@ -1,9 +1,14 @@
 import React from "react";
 import Subject from "./subject";
 import { withRouter } from "react-router-dom";
-import { getAllSubjects, deleteSubjectByID } from "../api";
+import AddSubject from "./addSubject";
+import { getAllSubjects, deleteSubjectByID, updateSubject } from "../api";
 
 class Subjects extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   componentDidMount() {
     // Make an API Call to Get all Subjects
     getAllSubjects()
@@ -33,56 +38,39 @@ class Subjects extends React.Component {
         console.log("API ERROR:", error);
       });
   };
-
-  // Make an API Call to add a Subject
-
-  //   addsubject = subject => {
-  //     console.log("add new subject");
-
-  //     addSubject(subject)
-  //         .then(res => {
-  //             const newSubjects = [...this.props.subjects, res.data.subject];
-
-  //             this.props.setSubjects(newSubjects);
-  //         })
-  //         .catch(err => console.log(err));
-  // };
-
-  // Make an API Call to update a Subject
-
-  // updateSubject = (subject, id) => {
-
-  //   updateSubject(subject, id)
-  //       .then(res => {
-  //           // Copy the subjects array from props
-  //           const newSubjects = [...this.props.subjects];
-
-  //           // Extract index of the subject that should update
-  //           const indexOfSubjectToUpdate = this.props.subjects.findIndex(
-  //             subject => subject._id === id
-  //           );
-
-  //           // Extract the subject that should update
-  //           const subjectToUpdate = newSubjects[indexOfSubjectToUpdate];
-
-  //           // Change required data of the old subject
-  //           const updatedSubject = {
-  //               ...subjectToUpdate,
-  //                       Name: "",
-  //                       SubjectCode:  "",
-  //                       Level: "",
-  //                       Teacher: "",
-  //                       Exam: ""
-  //           };
-
-  //           // Replace the old subject with the updated subject in the array
-  //           newSubjects.splice(indexOfSubjectToUpdate, 1, updatedSubject);
-
-  //           // Set the state of the subjects in APP component
-  //           this.props.setSubjects(newSubjects);
-  //       })
-  //       .catch(err => console.log(err));
-  // };
+  updatetheSubjects = (id, stat) => {
+    // const { alert, history } = this.props;
+    // e.preventDefault();
+    console.log("this is state", id, stat);
+    const newSub = {
+      subject: {
+        Name: stat.name,
+        SubjectCode: stat.subjectCode,
+        Level: stat.level
+        // Teacher: this.state.Teacher
+      }
+    };
+    console.log(newSub);
+    updateSubject(id, newSub)
+      .then(response => {
+           const newSubject = [...this.props.subjects];
+           const indexOfSubject = this.props.subjects.findIndex(
+             subject => subject._id === id);
+        console.log(
+          `The Subject with the ID ${id} has been updated.`,response.data);
+        newSubject.splice(indexOfSubject, 1, newSub);
+        this.props.setSubjects(newSubject);
+      })
+      .catch(error => {
+        console.log("API error", error);
+        this.setState({
+          Name: "",
+          SubjectCode: "",
+          Level: ""
+        });
+        // alert(messages.addSubFailure, "danger");
+      })
+  };
 
   render() {
     let allSubjects = <h4>No Subjects!</h4>;
@@ -93,19 +81,20 @@ class Subjects extends React.Component {
           <Subject
             name={subject.Name}
             subjectCode={subject.SubjectCode}
-            grade={subject.Level}
+            level={subject.Level}
             id={subject._id}
             deleteSubject={this.deleteSubject}
+            updatetheSubjects={this.updatetheSubjects}
             key={index}
           />
         );
       });
     }
-
     return (
       <>
         <h3>All Subjects</h3>
         {allSubjects}
+        <AddSubject AddSubject={this.props.AddSubjects} />
       </>
     );
   }

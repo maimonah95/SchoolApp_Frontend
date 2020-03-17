@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import { addNewSubject } from "../api";
+import { addNewfeed } from "../api";
 import messages from "../messages";
 
-class AddSubject extends Component {
+class AddFeed extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Name: "",
-      SubjectCode: "",
-      Level: "",
-      Teacher: "",
-      Exam: ""
+      Description: "",
+      Date: "",
+      EndDate: ""
+     
     };
   }
+
   Changehandler = e => {
     console.log(e.target.name);
     this.setState({
@@ -25,35 +26,38 @@ class AddSubject extends Component {
     const { alert, history } = this.props;
     e.preventDefault();
     console.log("this is state", this.state);
-    const newSub = {
+    const newFeed = {
       subject: {
         Name: this.state.Name,
-        SubjectCode: this.state.SubjectCode,
-        Level: this.state.Level
-        // Teacher: this.state.Teacher
+        Description: this.state.Description,
+        Date: this.state.Date,
+        EndDate: this.state.EndDate
+
       }
     };
-    console.log(newSub);
-    addNewSubject(newSub)
-      .then(() => alert(messages.addSubSuccess, "success"))
+    console.log(newFeed);
+    addNewfeed(newFeed)
+      .then(() => alert(messages.addFeedSuccess, "success"))
       .then(() => history.push("/"))
       .then(response => {
-        console.log("subject  has been added", response.data);
-        this.props.AddSubject(newSub);
-        // this.props.addNewSubject(response.data);
+        console.log("feed has been added", response.data);
+        this.props.AddFeed(newFeed);
+     
       })
       .catch(error => {
         console.log("API error", error);
         this.setState({
           Name: "",
-          SubjectCode: "",
-          Level: ""
+          Description: "",
+          Date: "",
+          EndDate: ""
         });
         // alert(messages.addSubFailure, "danger");
       });
   };
   render() {
-    const { Name, SubjectCode, Level } = this.state;
+  
+    const { Name, Description} = this.state;
     return (
       <div>
         <br/>
@@ -71,27 +75,17 @@ class AddSubject extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Code</label>
+            <label>Description</label>
             <input
               type="text"
-              name="SubjectCode"
-              value={SubjectCode}
+              name="Description"
+              value={Description}
               onChange={this.Changehandler}
               className="form-control"
-              placeholder=" Code"
+              placeholder=" Description"
             />
           </div>
-          <div className="form-group">
-            <label>Level</label>
-            <input
-              type="text"
-              name="Level"
-              value={Level}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Level"
-            />
-          </div>
+       
           <button type="submit" className="btn btn-primary btn-block">
             {" "}
             submit
@@ -102,4 +96,4 @@ class AddSubject extends Component {
   }
 }
 
-export default withRouter(AddSubject);
+export default withRouter(AddFeed);

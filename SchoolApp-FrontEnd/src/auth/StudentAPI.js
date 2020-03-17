@@ -14,11 +14,11 @@ const addnewStudent = (data) => {
     // return axios.post(`${apiUrl}/students`, {student:{FirstName:data.FirstName,LastName:data.LastName,Gender:data.Gender,subject:data.subject,ID:data.ID}} );
     return axios.post(`${apiUrl}/students`, {student:data} );
 }
-// const updateStudent = (data,id) => {
-//     return axios.patch(`${apiUrl}/articles/${id}`,{article:{title:data.title,author:data.author,content:data.content,_id:id}});
-// }
+const updateStudent = (data,id) => {
+    return axios.patch(`${apiUrl}/students/${id}`,{student:data});
+}
 const getoneSubjects = (id) => {
     console.log(apiUrl);
     return axios.get(`${apiUrl}/subjects/${id}`);
 };
-export { getAllStudent,deleteStudentByID,getoneSubjects,addnewStudent };
+export { getAllStudent,deleteStudentByID,getoneSubjects,addnewStudent,updateStudent };

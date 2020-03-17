@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {addnewStudent,addnewStudent1} from "../StudentAPI";
+import {addnewStudent} from "../StudentAPI";
 
 
 export default class AddNewStudent extends React.Component{
@@ -122,6 +122,7 @@ export default class AddNewStudent extends React.Component{
                       </label>
                   </div>
 
+                  <br/>
                   <br/>
                   {/*<div className="form-group">*/}
                   {/*    <label htmlFor="sel1">Subjects list:</label>*/}

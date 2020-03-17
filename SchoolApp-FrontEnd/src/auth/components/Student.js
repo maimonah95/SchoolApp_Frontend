@@ -9,17 +9,6 @@ export default class Student extends React.Component{
         }
     }
 
-
-
-    // nameOfSub = (id)=>{
-    //     getoneSubjects(id)
-    //         .then((res)=>{
-    //
-    //         })
-    //         .catch((error)=>{
-    //             console.log(error);
-    //         })
-    // };
     onchange = (event,input) => {
         //set event for mulitpe input
         this.setState({ [input]: event.target.value });
@@ -83,7 +72,9 @@ export default class Student extends React.Component{
                 <td>
                     <button onClick={(id)=>{this.props.deleteStudent(this.props.all._id)}}
                             className="btn btn-danger">Delete</button>{" "}
-                    <button onClick={()=>{this.setState({isedit:true})}} className="btn btn-secondary">Edit</button>
+                    {/*<button onClick={()=>{this.setState({isedit:true})}} className="btn btn-secondary">Edit</button>*/}
+                    <button onClick={()=>{this.props.editStudent("true",{FirstName:this.props.FirstName,LastName:this.props.LastName,Gender:this.props.all.Gender,ID:this.props.all.ID,_id:this.props.all._id})}}
+                            className="btn btn-secondary">Edit</button>
 
                 </td>
 

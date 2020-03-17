@@ -7,9 +7,8 @@ import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
-import AddSubjects from "./auth/components/addSubject";
 import AlertDismissible from './auth/components/AlertDismissible'
-import Subjects from "./auth/components/subjects";
+import Subjects from "./auth/components/subjects"
 class App extends Component {
   constructor() {
     super();
@@ -31,6 +30,11 @@ class App extends Component {
 
   setSubjects = subjects => {
     this.setState({ subjects: subjects });
+  };
+  AddSubjects = subjects => {
+    this.setState({
+      subjects: [...this.state.subjects, subjects]
+    });
   };
 
   render() {
@@ -70,16 +74,35 @@ class App extends Component {
             user={user}
             path="/Subjects"
             render={() => (
-              <Subjects alert={this.alert} user={user} subjects={subjects} />
+              <Subjects
+                alert={this.alert}
+                user={user}
+                subjects={this.state.subjects}
+                setSubjects={this.setSubjects}
+                AddSubjects={this.AddSubjects}
+              />
             )}
           />
-          <AuthenticatedRoute
+
+          {/* <AuthenticatedRoute
             user={user}
             path="/addSub"
             render={() => (
               <AddSubjects alert={this.alert} user={user} subjects={subjects} />
             )}
-          />
+          /> */}
+          {/* <AuthenticatedRoute
+            user={user}
+            path="/update-sub"
+            render={() => (
+              <UpdateSubjects
+                alert={this.alert}
+                user={user}
+                subjects={this.state.subjects}
+                setSubjects={this.setSubjects}
+              />
+            )}
+          /> */}
         </main>
       </React.Fragment>
     );

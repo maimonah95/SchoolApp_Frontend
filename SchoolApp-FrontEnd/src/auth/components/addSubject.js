@@ -39,6 +39,7 @@ class AddSubject extends Component {
       .then(() => history.push("/"))
       .then(response => {
         console.log("subject  has been added", response.data);
+        this.props.AddSubjects(newSub);
         // this.props.addNewSubject(response.data);
       })
       .catch(error => {
@@ -48,7 +49,7 @@ class AddSubject extends Component {
           SubjectCode: "",
           Level: ""
         });
-        alert(messages.addSubFailure, "danger");
+        // alert(messages.addSubFailure, "danger");
       });
   };
   render() {

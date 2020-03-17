@@ -4,8 +4,8 @@ class Subject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      subjectCode: "",
+      Name: "",
+      SubjectCode: "",
       Level: ""
     };
   }
@@ -14,7 +14,7 @@ class Subject extends React.Component {
     this.setState({
       name: this.props.name,
       subjectCode: this.props.subjectCode,
-      Level: this.props.Level
+      level: this.props.level
     });
   };
   updateSubject  = event => {
@@ -36,7 +36,7 @@ class Subject extends React.Component {
   };
 
   render() {
-    const { name, subjectCode, Level } = this.state;
+    const { name, subjectCode, level } = this.state;
     return (
       <div className="subject">
         <input
@@ -56,7 +56,7 @@ class Subject extends React.Component {
         <input
           type="text"
           name="Level"
-          value={Level}
+          value={level}
           onChange={this.Changehandler}
         />
         <br />

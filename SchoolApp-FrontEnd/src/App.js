@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import AlertDismissible from './auth/components/AlertDismissible'
 import Subjects from "./auth/components/subjects"
+import Feeds from "./auth/components/feeds"
 import Students from "./auth/components/Students";
 class App extends Component {
   constructor() {
@@ -17,7 +18,8 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      subjects: []
+      subjects: [],
+      feeds:[]
     };
   }
 
@@ -32,9 +34,18 @@ class App extends Component {
   setSubjects = subjects => {
     this.setState({ subjects: subjects });
   };
+
   AddSubjects = subjects => {
     this.setState({
       subjects: [...this.state.subjects, subjects]
+    });
+  };
+  setFeeds = feeds => {
+    this.setState({ feeds: feeds });
+  };
+  AddFeeds = feeds => {
+    this.setState({
+      feeds: [...this.state.feeds, feeds]
     });
   };
 
@@ -84,6 +95,7 @@ class App extends Component {
               />
             )}
           />
+             
 
           <AuthenticatedRoute
               user={user}
@@ -92,30 +104,26 @@ class App extends Component {
                  <Students/>
               )}
           />
-  <Students/>
-          {/* <AuthenticatedRoute
+
+          <AuthenticatedRoute 
             user={user}
-            path="/addSub"
+            path="/Feeds"
             render={() => (
-              <AddSubjects alert={this.alert} user={user} subjects={subjects} />
-            )}
-          /> */}
-          {/* <AuthenticatedRoute
-            user={user}
-            path="/update-sub"
-            render={() => (
-              <UpdateSubjects
+              <Feeds
                 alert={this.alert}
                 user={user}
-                subjects={this.state.subjects}
-                setSubjects={this.setSubjects}
+                feeds={this.state.feeds}
+                setFeeds={this.setFeeds}
+                AddFeeds={this.AddFeeds}
               />
             )}
-          /> */}
+          />
+
+         
         </main>
       </React.Fragment>
     );
   }
 }
 
-export default App
+export default App;

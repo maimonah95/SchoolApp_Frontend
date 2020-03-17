@@ -1,7 +1,7 @@
 import React from "react";
 import Subject from "./subject";
 import { withRouter } from "react-router-dom";
-import AddSubjects from "./addSubject";
+import AddSubject from "./addSubject";
 import { getAllSubjects, deleteSubjectByID, updateSubject } from "../api";
 
 class Subjects extends React.Component {
@@ -46,7 +46,7 @@ class Subjects extends React.Component {
       subject: {
         Name: stat.name,
         SubjectCode: stat.subjectCode,
-        Level: stat.Level
+        Level: stat.level
         // Teacher: this.state.Teacher
       }
     };
@@ -57,9 +57,9 @@ class Subjects extends React.Component {
            const indexOfSubject = this.props.subjects.findIndex(
              subject => subject._id === id);
         console.log(
-          `The Article with the ID ${id} has been updated.`,response.data);
+          `The Subject with the ID ${id} has been updated.`,response.data);
         newSubject.splice(indexOfSubject, 1, newSub);
-        this.props.setArticles(newSubject);
+        this.props.setSubjects(newSubject);
       })
       .catch(error => {
         console.log("API error", error);
@@ -81,7 +81,7 @@ class Subjects extends React.Component {
           <Subject
             name={subject.Name}
             subjectCode={subject.SubjectCode}
-            Level={subject.Level}
+            level={subject.Level}
             id={subject._id}
             deleteSubject={this.deleteSubject}
             updatetheSubjects={this.updatetheSubjects}
@@ -94,7 +94,7 @@ class Subjects extends React.Component {
       <>
         <h3>All Subjects</h3>
         {allSubjects}
-        <AddSubjects AddSubjects={this.props.AddSubjects} />
+        <AddSubject AddSubject={this.props.AddSubjects} />
       </>
     );
   }

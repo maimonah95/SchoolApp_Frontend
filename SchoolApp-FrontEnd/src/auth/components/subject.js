@@ -10,7 +10,6 @@ class Subject extends React.Component {
       isedit: false
     };
   }
-
   componentWillMount = () => {
     this.setState({
       name: this.props.name,
@@ -30,17 +29,14 @@ class Subject extends React.Component {
       [e.target.name]: e.target.value
     });
   };
-
   deleteSubject = e => {
     e.preventDefault();
     console.log("delete id : ", this.props.id);
     this.props.deleteSubject(this.props.id);
   };
-
   render() {
     const { name, subjectCode, level } = this.state;
     let editsubject = <div></div>;
-
     if (this.state.isedit) {
       editsubject = (
         <div>
@@ -68,7 +64,6 @@ class Subject extends React.Component {
                 value={subjectCode}
               />
             </div>
-
             <div className="col">
               <label>Level</label>
               <input
@@ -118,6 +113,5 @@ class Subject extends React.Component {
       </tr>
     );
   }
-
 }
 export default Subject;

@@ -16,8 +16,7 @@ class Feed extends React.Component {
       name: this.props.name,
       description: this.props.description,
       date: this.props.date,
-      date:this.props.endDate
-
+      date: this.props.endDate
     });
   };
 
@@ -40,8 +39,8 @@ class Feed extends React.Component {
   };
 
   render() {
-    const { name, description} = this.state;
-     let editsubject = <div></div>;
+    const { name, description } = this.state;
+    let editsubject = <div></div>;
 
     if (this.state.isedit) {
       editsubject = (
@@ -80,29 +79,29 @@ class Feed extends React.Component {
         </div>
       );
     }
-     return (
-       <tr>
-         <td>{this.props.name}</td>
-         <td>{this.props.description}</td>
-         <td>
-           <button onClick={this.deleteFeed} className="btn btn-danger">
-             Delete
-           </button>{" "}
-           <button
-             onClick={() => {
-               this.props.editFeed("true", {
-                 Name: this.props.name,
-                 Description: this.props.description,
-                 _id: this.props.id
-               });
-             }}
-             className="btn btn-secondary"
-           >
-             Edit
-           </button>
-         </td>
-       </tr>
-     );
+    return (
+      <tr>
+        <td>{this.props.name}</td>
+        <td>{this.props.description}</td>
+        <td>
+          <button onClick={this.deleteFeed} className="btn btn-danger">
+            Delete
+          </button>{" "}
+          <button
+            onClick={() => {
+              this.props.editFeed("true", {
+                Name: this.props.name,
+                Description: this.props.description,
+                _id: this.props.id
+              });
+            }}
+            className="btn btn-secondary"
+          >
+            Edit
+          </button>
+        </td>
+      </tr>
+    );
   }
 }
 export default Feed;

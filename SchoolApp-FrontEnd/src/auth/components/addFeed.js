@@ -12,7 +12,7 @@ class AddFeed extends Component {
       Description: "",
       Date: "",
       EndDate: "",
-     _id:""
+      _id: ""
     };
   }
 
@@ -48,8 +48,7 @@ class AddFeed extends Component {
           newFeeds.push(response.data.feed);
         }
 
-
-      console.log("newFeeds : ", newFeeds);
+        console.log("newFeeds : ", newFeeds);
 
         this.props.setFeeds(newFeeds);
         this.props.setShowform(false);
@@ -66,37 +65,36 @@ class AddFeed extends Component {
       });
   };
   render() {
-  
-    const { Name, Description} = this.state;
+    const { Name, Description } = this.state;
     return (
       <div>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <form onSubmit={this.SubmitHandeler}>
-           <div className="row">
+          <div className="row">
             <div className="col">
-            <label>Name</label>
-            <input
-              type="text"
-              name="Name"
-              value={Name}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Name"
-            />
-          </div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="Name"
+                value={Name}
+                onChange={this.Changehandler}
+                className="form-control"
+                placeholder=" Name"
+              />
+            </div>
             <div className="col">
-            <label>Description</label>
-            <input
-              type="text"
-              name="Description"
-              value={Description}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Description"
-            />
+              <label>Description</label>
+              <input
+                type="text"
+                name="Description"
+                value={Description}
+                onChange={this.Changehandler}
+                className="form-control"
+                placeholder=" Description"
+              />
+            </div>
           </div>
-       </div>
           <button type="submit" className="btn btn-primary btn-block">
             {" "}
             submit

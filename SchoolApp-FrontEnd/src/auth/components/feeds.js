@@ -91,11 +91,10 @@ class Feeds extends React.Component {
         // EndDate: stat.endDate
       }
     };
-        const theNewFeed1 = {
-         
-            Name: this.state.name,
-            Description: this.state.description
-        };
+    const theNewFeed1 = {
+      Name: this.state.name,
+      Description: this.state.description
+    };
     console.log(theNewFeed);
     updateFeed(this.state._id, theNewFeed)
       .then(response => {
@@ -108,7 +107,7 @@ class Feeds extends React.Component {
           response.data
         );
         newFeed.splice(indexOfFeed, 1, theNewFeed1);
-        this.setFeeds( newFeed);
+        this.setFeeds(newFeed);
         this.setState({ isedit: false });
       })
       .catch(error => {
@@ -149,7 +148,9 @@ class Feeds extends React.Component {
         <AddFeed
           setShowform={this.setShowform}
           feeds={this.state.feeds}
-          setFeeds={(n)=>{this.setFeeds(n)}}
+          setFeeds={n => {
+            this.setFeeds(n);
+          }}
         />
       );
     }
@@ -185,7 +186,8 @@ class Feeds extends React.Component {
           <button
             onClick={this.handleUpdate}
             type="submit"
-            className="btn btn-primary" >
+            className="btn btn-primary"
+          >
             Save
           </button>
         </div>
@@ -219,6 +221,5 @@ class Feeds extends React.Component {
     );
   }
 }
-
 
 export default withRouter(Feeds);

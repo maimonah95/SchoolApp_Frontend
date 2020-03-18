@@ -3,6 +3,7 @@ import Subject from "./subject";
 import { withRouter } from "react-router-dom";
 import AddSubject from "./addSubject";
 import { getAllSubjects, deleteSubjectByID, updateSubject } from "../api";
+
 class Subjects extends React.Component {
   constructor(props) {
     super(props);
@@ -15,14 +16,32 @@ class Subjects extends React.Component {
     SubjectCode: "",
     Level: "",
     _id: "",
-
-    subjects: [],
-
+    subjects: []
   };
   // for set the new subject array after add
   setSubjects = newSubject => {
     console.log("students", newSubject);
     this.setState({ subjects: newSubject });
+  };
+
+  // setSubjects = subjects => {
+  //   let Onesubject = {};
+  //   let gatherExam = subjects.map((data, index) => {
+  //     Onesubject.Name = data.Name;
+  //     Onesubject.SubjectCode = data.SubjectCode;
+  //     Onesubject.Level = data.Level;
+  //     Onesubject.Exams = data.Exam;
+  //     Onesubject.ID = data._id;
+  //   });
+  //         return (
+  //           console.log("data : ", Onesubject),
+  //           this.setState({ subjects:  Onesubject})
+  //         );
+  //   console.log("Data is :", Onesubject);
+  // };
+  //to set the form to hide after add new subject
+  setShowform = check => {
+    this.setState({ isadd: check });
   };
 
   componentDidMount() {
@@ -37,6 +56,7 @@ class Subjects extends React.Component {
       .catch(error => {
         console.log("API ERROR:", error);
       });
+  }
 
   // Make an API Call to Delete a Subject
   deleteSubject = id => {
@@ -56,7 +76,6 @@ class Subjects extends React.Component {
       });
   };
 
-
   //to toggle the form to show for add new subject
   addnewsubject = e => {
     e.preventDefault();
@@ -71,6 +90,7 @@ class Subjects extends React.Component {
       tempsubject: subjectInfo
     });
   };
+
   Changehandler = e => {
     e.preventDefault();
     console.log(e.target.value);
@@ -88,13 +108,12 @@ class Subjects extends React.Component {
         _id: this.state._id
       }
     };
-        const oneSub1 = {
-          
-            Name: this.state.Name,
-            SubjectCode: this.state.SubjectCode,
-            Level: this.state.Level,
-            _id: this.state._id
-        };
+    const oneSub1 = {
+      Name: this.state.Name,
+      SubjectCode: this.state.SubjectCode,
+      Level: this.state.Level,
+      _id: this.state._id
+    };
     console.log(oneSub, "id ", this.state._id);
     updateSubject(this.state._id, oneSub)
       .then(response => {
@@ -107,7 +126,7 @@ class Subjects extends React.Component {
           response.data
         );
         newSubject.splice(indexOfSubject, 1, oneSub1);
-        this.setSubjects(newSubject );
+        this.setSubjects(newSubject);
         // this.setSubjects(newSubject);
         ///////!!!!!!!
         this.setState({ isedit: false });
@@ -120,8 +139,8 @@ class Subjects extends React.Component {
           Level: ""
         });
       });
-
   };
+
   render() {
     let allSubjects = <h4>No Subjects!</h4>;
 
@@ -137,18 +156,6 @@ class Subjects extends React.Component {
             deleteSubject={this.deleteSubject}
             key={index}
           />
-
-    if (this.state.subjects.length > 0) {
-      allSubjects = this.state.subjects.map((subject, index) => {
-        return (
-            <Subject
-                editSubject={this.editSubject}
-                name={subject.Name}
-                subjectCode={subject.SubjectCode}
-                level={subject.Level}
-                id={subject._id}
-                deleteSubject={this.deleteSubject}
-            />
         );
       });
     }
@@ -159,9 +166,10 @@ class Subjects extends React.Component {
         <AddSubject
           setShowform={this.setShowform}
           subjects={this.state.subjects}
-          setSubject={(n)=>{this.setSubject(n)}}
+          setSubject={n => {
+            this.setSubject(n);
+          }}
         />
-
       );
     }
     // for Edit subject form
@@ -231,7 +239,6 @@ class Subjects extends React.Component {
         <br />
         <table className="table table-hover">
           <thead>
-
             <tr>
               <th>name</th>
               <th>subject code </th>
@@ -243,8 +250,8 @@ class Subjects extends React.Component {
           <tbody>{allSubjects}</tbody>
         </table>
       </div>
-
     );
   }
 }
-export default withRouter(Subjects)
+
+export default withRouter(Subjects);

@@ -4,9 +4,9 @@ class Subject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: "",
-      SubjectCode: "",
-      Level: ""
+      name: "",
+      subjectCode: "",
+      level: ""
     };
   }
 

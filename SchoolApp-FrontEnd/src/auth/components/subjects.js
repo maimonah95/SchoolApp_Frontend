@@ -1,7 +1,7 @@
 import React from "react";
-import Subject from "./subject";
+import Subject from "./Subject";
 import { withRouter } from "react-router-dom";
-import AddSubject from "./addSubject";
+import AddSubject from "./AddSubject";
 import { getAllSubjects, deleteSubjectByID, updateSubject } from "../api";
 
 class Subjects extends React.Component {

@@ -3,10 +3,10 @@ class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: "",
-      Description: "",
-      Date: "",
-      EndDate: ""
+      name: "",
+      description: "",
+      date: "",
+      endDate: ""
      
     };
   }

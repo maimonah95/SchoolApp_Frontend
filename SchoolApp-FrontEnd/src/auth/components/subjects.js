@@ -120,7 +120,8 @@ class Subjects extends React.Component {
           response.data
         );
         newSubject.splice(indexOfSubject, 1, oneSub);
-        this.setSubjects(newSubject);
+        this.setState({ subjects:newSubject});
+        // this.setSubjects(newSubject);
         this.state.setState({ isedit: false });
       })
       .catch(error => {

@@ -78,9 +78,9 @@ class Subject extends React.Component {
                 onChange={this.Changehandler}
               />
             </div>
-            <div className="col">
+            {/* <div className="col"> */}
               {/* <Exams exam={this.props.exams} id={this.props.id} /> */}
-            </div>
+            {/* </div> */}
           </div>
           <button type="submit" className="btn btn-primary">
             Save

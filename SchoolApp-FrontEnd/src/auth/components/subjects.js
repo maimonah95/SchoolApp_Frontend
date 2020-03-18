@@ -108,6 +108,13 @@ class Subjects extends React.Component {
         _id: this.state._id
       }
     };
+        const oneSub1 = {
+          
+            Name: this.state.Name,
+            SubjectCode: this.state.SubjectCode,
+            Level: this.state.Level,
+            _id: this.state._id
+        };
     console.log(oneSub, "id ", this.state._id);
     updateSubject(this.state._id, oneSub)
       .then(response => {
@@ -119,10 +126,11 @@ class Subjects extends React.Component {
           `The Subject with the ID ${this.state._id} has been updated.`,
           response.data
         );
-        newSubject.splice(indexOfSubject, 1, oneSub);
-        this.setState({ subjects:newSubject});
+        newSubject.splice(indexOfSubject, 1, oneSub1);
+        this.setSubjects(newSubject );
         // this.setSubjects(newSubject);
-        this.state.setState({ isedit: false });
+        ///////!!!!!!!
+        this.setState({ isedit: false });
       })
       .catch(error => {
         console.log("API error", error);
@@ -147,6 +155,7 @@ class Subjects extends React.Component {
             level={subject.Level}
             id={subject._id}
             deleteSubject={this.deleteSubject}
+            key={index}
           />
         );
       });
@@ -158,7 +167,7 @@ class Subjects extends React.Component {
         <AddSubject
           setShowform={this.setShowform}
           subjects={this.state.subjects}
-          setSubject={this.setSubject}
+          setSubject={(n)=>{this.setSubject(n)}}
         />
       );
     }

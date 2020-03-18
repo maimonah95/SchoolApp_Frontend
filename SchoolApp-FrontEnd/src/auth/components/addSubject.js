@@ -37,8 +37,8 @@ class AddSubject extends Component {
     };
     console.log(newSub);
     addNewSubject(newSub)
-      .then(() => alert(messages.addSubSuccess, "success"))
-      .then(() => history.push("/"))
+      // .then(() => alert(messages.addSubSuccess, "success"))
+      // .then(() => history.push("/"))
       .then(response => {
         console.log("subject  has been added", response.data);
         // this.props.AddSubject(newSub);
@@ -49,7 +49,8 @@ class AddSubject extends Component {
         } else {
           newSubjectts.push(response.data.subject);
         }
-        this.props.setSubject(newSubjectts);
+        console.log("newFeeds : ", newSubjectts);
+        this.props.setSubjects(newSubjectts);
         this.props.setShowform(false);
       })
       .catch(error => {

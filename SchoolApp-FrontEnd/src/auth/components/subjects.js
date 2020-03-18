@@ -166,8 +166,7 @@ class Subjects extends React.Component {
         <AddSubject
           setShowform={this.setShowform}
           subjects={this.state.subjects}
-          setSubject={n => {
-            this.setSubject(n);
+          setSubjects={(n) => {this.setSubjects(n);
           }}
         />
       );

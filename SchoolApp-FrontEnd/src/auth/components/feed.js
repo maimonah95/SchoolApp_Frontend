@@ -19,12 +19,6 @@ class Feed extends React.Component {
       date: this.props.endDate
     });
   };
-
-  // updateFeed  = event => {
-  //   event.preventDefault();
-  //   console.log("update", this.state);
-  //   this.props.updatetheFeeds(this.props.id, this.state);
-  // };
   Changehandler = e => {
     e.preventDefault();
     console.log(e.target.value);

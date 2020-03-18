@@ -1,7 +1,7 @@
 import React from "react";
-import Feed from "./Feed";
+import Feed from "./feed";
 import { withRouter } from "react-router-dom";
-import AddFeed from "./AddFeed";
+import AddFeed from "./addFeed";
 import { getAllFeeds, deleteFeedByID, updateFeed } from "../api";
 
 class Feeds extends React.Component {
@@ -93,7 +93,8 @@ class Feeds extends React.Component {
     };
     const theNewFeed1 = {
       Name: this.state.name,
-      Description: this.state.description
+      Description: this.state.description,
+      _id: this.state._id
     };
     console.log(theNewFeed);
     updateFeed(this.state._id, theNewFeed)
@@ -131,8 +132,6 @@ class Feeds extends React.Component {
           <Feed
             name={feed.Name}
             description={feed.Description}
-            // date={feed.date}
-            // endDate={feed.EndDate}
             id={feed._id}
             deleteFeed={this.deleteFeed}
             editFeed={this.editFeed}

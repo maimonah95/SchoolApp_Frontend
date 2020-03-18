@@ -8,7 +8,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import AlertDismissible from './auth/components/AlertDismissible'
 import Subjects from "./auth/components/subjects"
-import Feeds from "./auth/components/Feeds"
+import Feeds from "./auth/components/feeds"
 import Students from "./auth/components/Students";
 class App extends Component {
   constructor() {

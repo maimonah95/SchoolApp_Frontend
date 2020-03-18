@@ -1,14 +1,15 @@
+
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
 import { addNewSubject } from "../api";
 import messages from "../messages";
-
 class AddSubject extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subject: [],
+
+
+      subject:[],
       Name: "",
       SubjectCode: "",
       Level: "",
@@ -37,6 +38,7 @@ class AddSubject extends Component {
     };
     console.log(newSub);
     addNewSubject(newSub)
+
       .then(() => alert(messages.addSubSuccess, "success"))
       .then(() => history.push("/"))
       .then(response => {
@@ -58,9 +60,11 @@ class AddSubject extends Component {
           Name: "",
           SubjectCode: "",
           Level: ""
+
+ 
+          // alert(messages.addSubFailure, "danger");
+
         });
-        // alert(messages.addSubFailure, "danger");
-      });
   };
   render() {
     const { Name, SubjectCode, Level } = this.state;
@@ -117,5 +121,4 @@ class AddSubject extends Component {
     );
   }
 }
-
 export default withRouter(AddSubject);

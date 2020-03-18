@@ -118,6 +118,6 @@ class Subject extends React.Component {
       </tr>
     );
   }
-}
 
+}
 export default Subject;

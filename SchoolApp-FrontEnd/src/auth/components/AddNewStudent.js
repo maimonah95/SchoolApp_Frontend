@@ -15,19 +15,6 @@ export default class AddNewStudent extends React.Component{
         }
     }
 
-    // componentDidMount() {
-    //     getAllSubjects().then((response)=>{
-    //         // console.log("res",response.data.subjects)
-    //         //save student list in student state
-    //         // this.setState({subjects:response.data.subjects})
-    //
-    //         // console.log("res state",subject);
-    //     })
-    //         .catch((error)=>{
-    //             // console.log(this.state.students);
-    //             console.log('api error:',error)
-    //         })
-    // }
     onchange = (event,input) => {
         //set event for mulitpe input
         this.setState({ [input]: event.target.value });

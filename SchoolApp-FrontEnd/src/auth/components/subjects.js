@@ -64,7 +64,6 @@ class Subjects extends React.Component {
     deleteSubjectByID(id)
       .then(response => {
         console.log(`The Subject with the ID ${id} has been deleted.`);
-
         const newSubjectsList = this.state.subjects.filter(subject => {
           return subject._id !== id;
         });
@@ -143,7 +142,6 @@ class Subjects extends React.Component {
 
   render() {
     let allSubjects = <h4>No Subjects!</h4>;
-
     if (this.state.subjects.length > 0) {
       allSubjects = this.state.subjects.map((subject, index) => {
         return (
@@ -199,7 +197,6 @@ class Subjects extends React.Component {
                 value={this.state.SubjectCode}
               />
             </div>
-
             <div className="col">
               <label>Level</label>
               <input
@@ -222,15 +219,12 @@ class Subjects extends React.Component {
         </div>
       );
     }
-
     return (
       <div className="container">
         <h2>subject List</h2>
-
         {addnewsubj}
         {editsubject}
         <br />
-
         <button className="btn btn-primary" onClick={this.addnewsubject}>
           Add new subject
         </button>
@@ -253,4 +247,6 @@ class Subjects extends React.Component {
   }
 }
 
+
 export default withRouter(Subjects);
+

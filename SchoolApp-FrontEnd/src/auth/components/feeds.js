@@ -1,7 +1,7 @@
 import React from "react";
-import Feed from "./feed";
+import Feed from "./Feed";
 import { withRouter } from "react-router-dom";
-import AddFeed from "./addFeed";
+import AddFeed from "./AddFeed";
 import { getAllFeeds, deleteFeedByID, updateFeed } from "../api";
 
 class Feeds extends React.Component {

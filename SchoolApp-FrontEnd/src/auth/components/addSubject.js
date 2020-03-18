@@ -8,6 +8,7 @@ class AddSubject extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      subject: [],
       Name: "",
       SubjectCode: "",
       Level: "",
@@ -16,7 +17,8 @@ class AddSubject extends Component {
     };
   }
   Changehandler = e => {
-    console.log(e.target.name);
+    // console.log(e.target.name);
+    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -39,8 +41,16 @@ class AddSubject extends Component {
       .then(() => history.push("/"))
       .then(response => {
         console.log("subject  has been added", response.data);
-        this.props.AddSubject(newSub);
+        // this.props.AddSubject(newSub);
         // this.props.addNewSubject(response.data);
+        const newSubjectts = [...this.props.subjects];
+        const index = newSubjectts.indexOf(response.data);
+        if (index !== -1) {
+        } else {
+          newSubjectts.push(response.data.subject);
+        }
+        this.props.setSubject(newSubjectts);
+        this.props.setShowform(false);
       })
       .catch(error => {
         console.log("API error", error);
@@ -56,43 +66,49 @@ class AddSubject extends Component {
     const { Name, SubjectCode, Level } = this.state;
     return (
       <div>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <form onSubmit={this.SubmitHandeler}>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              name="Name"
-              value={Name}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Name"
-            />
+          <div className="row">
+            <div className="col">
+              <label>Name</label>
+              <input
+                type="text"
+                name="Name"
+                value={Name}
+                onChange={this.Changehandler}
+                className="form-control"
+                placeholder=" Name"
+              />
+            </div>
+            <div className="col">
+              <label>Code</label>
+              <input
+                type="text"
+                name="SubjectCode"
+                value={SubjectCode}
+                onChange={this.Changehandler}
+                className="form-control"
+                placeholder=" Code"
+              />
+            </div>
+            <div className="col">
+              <label>Level</label>
+              <input
+                type="text"
+                name="Level"
+                value={Level}
+                onChange={this.Changehandler}
+                className="form-control"
+                placeholder=" Level"
+              />
+            </div>
           </div>
-          <div className="form-group">
-            <label>Code</label>
-            <input
-              type="text"
-              name="SubjectCode"
-              value={SubjectCode}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Code"
-            />
-          </div>
-          <div className="form-group">
-            <label>Level</label>
-            <input
-              type="text"
-              name="Level"
-              value={Level}
-              onChange={this.Changehandler}
-              className="form-control"
-              placeholder=" Level"
-            />
-          </div>
-          <button type="submit" className="btn btn-primary btn-block">
+          <button
+            type="submit"
+            // onSubmit={this.SubmitHandeler}
+            className="btn btn-primary"
+          >
             {" "}
             submit
           </button>
